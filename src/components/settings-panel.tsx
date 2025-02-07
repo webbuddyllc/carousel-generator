@@ -25,6 +25,7 @@ import {
   Palette,
   Plus,
   Type,
+  Grid,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Drawer } from "vaul";
@@ -38,6 +39,7 @@ import { set } from "zod";
 import { StyleMenu } from "@/components/style-menu";
 import { useFormContext } from "react-hook-form";
 import { DocumentFormReturn } from "@/lib/document-form-types";
+import { PatternsForm } from "@/components/forms/patterns-form";
 
 type TabInfo = {
   name: string;
@@ -60,6 +62,11 @@ const ALL_FORMS: Record<string, TabInfo> = {
     name: "Fonts",
     value: "fonts",
     icon: Type,
+  },
+  patterns: {
+    name: "Patterns",
+    value: "patterns",
+    icon: Grid,
   },
   pageNumber: {
     name: "Numbers",
@@ -161,6 +168,7 @@ export function SidebarTabsPanel() {
             <VerticalTabTriggerButton tabInfo={ALL_FORMS.brand} />
             <VerticalTabTriggerButton tabInfo={ALL_FORMS.theme} />
             <VerticalTabTriggerButton tabInfo={ALL_FORMS.fonts} />
+            <VerticalTabTriggerButton tabInfo={ALL_FORMS.patterns} />
             <VerticalTabTriggerButton tabInfo={ALL_FORMS.pageNumber} />
           </VerticalTabsList>
         </ScrollArea>
@@ -193,6 +201,14 @@ export function SidebarTabsPanel() {
             <h4 className="text-xl font-semibold">{ALL_FORMS.fonts.name}</h4>
             <Separator className="mt-2 mb-4"></Separator>
             <FontsForm />
+          </VerticalTabsContent>
+          <VerticalTabsContent
+            value={ALL_FORMS.patterns.value}
+            className="mt-0 border-0 p-0 m-4"
+          >
+            <h4 className="text-xl font-semibold">{ALL_FORMS.patterns.name}</h4>
+            <Separator className="mt-2 mb-4"></Separator>
+            <PatternsForm />
           </VerticalTabsContent>
           <VerticalTabsContent
             value={ALL_FORMS.pageNumber.value}
@@ -232,6 +248,7 @@ export function DrawerFormsPanel({ className }: { className: string }) {
             <HorizontalTabTriggerButton tabInfo={ALL_FORMS.brand} />
             <HorizontalTabTriggerButton tabInfo={ALL_FORMS.theme} />
             <HorizontalTabTriggerButton tabInfo={ALL_FORMS.fonts} />
+            <HorizontalTabTriggerButton tabInfo={ALL_FORMS.patterns} />
             <HorizontalTabTriggerButton tabInfo={ALL_FORMS.pageNumber} />
           </TabsList>
         </ScrollArea>
@@ -260,6 +277,14 @@ export function DrawerFormsPanel({ className }: { className: string }) {
             <h4 className="text-xl font-semibold">{ALL_FORMS.fonts.name}</h4>
             <Separator className="mt-2 mb-4"></Separator>
             <FontsForm />
+          </TabsContent>
+          <TabsContent
+            value={ALL_FORMS.patterns.value}
+            className="mt-0 border-0 p-0 m-4"
+          >
+            <h4 className="text-xl font-semibold">{ALL_FORMS.patterns.name}</h4>
+            <Separator className="mt-2 mb-4"></Separator>
+            <PatternsForm />
           </TabsContent>
           <TabsContent
             value={ALL_FORMS.pageNumber.value}
