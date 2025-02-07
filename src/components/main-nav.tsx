@@ -24,6 +24,8 @@ export interface MainNavProps {
   className?: string;
   handlePrint: () => void;
   isPrinting: boolean;
+  handleDownload?: () => void;
+  isDownloading?: boolean;
   children?: ReactNode;
 }
 
@@ -31,11 +33,29 @@ export function MainNav({
   className,
   handlePrint,
   isPrinting,
+  handleDownload,
+  isDownloading,
   children,
 }: MainNavProps) {
   return (
-    <div className={cn("flex items-center", className)}>
+    <div className={cn("flex items-center gap-2", className)}>
       {children}
+      {handleDownload && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={handleDownload}
+          disabled={isDownloading}
+        >
+          {isDownloading ? (
+            <Loader2Icon className="h-4 w-4 animate-spin" />
+          ) : (
+            <Download className="h-4 w-4" />
+          )}
+          Download
+        </Button>
+      )}
       <Button
         variant="outline"
         size="sm"
@@ -43,7 +63,11 @@ export function MainNav({
         onClick={handlePrint}
         disabled={isPrinting}
       >
-        <Printer className="h-4 w-4" />
+        {isPrinting ? (
+          <Loader2Icon className="h-4 w-4 animate-spin" />
+        ) : (
+          <Printer className="h-4 w-4" />
+        )}
         Print
       </Button>
     </div>

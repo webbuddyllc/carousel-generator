@@ -13,7 +13,6 @@ import {
 import { GeistSans, GeistMono } from "geist/font";
 import { Toaster } from "@/components/ui/toaster";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
-import { SiteFooter } from "@/components/site-footer";
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -103,10 +102,9 @@ export default function RootLayout({
       <body
         className={`${dm_sans.variable} ${dm_serif_display.variable} ${pt_serif.variable} ${roboto.variable} ${roboto_condensed.variable} ${ultra.variable} ${inter.variable} ${syne.variable} ${archivoBlack.variable}  ${montserrat.variable}  ${GeistSans.variable} flex flex-col min-h-screen items-stretch justify-between antialiased`}
       >
-        <div className="flex-1 h-full flex flex-col justify-stretch ">
+        <div className="flex-1 h-full flex flex-col justify-stretch">
           {children}
         </div>
-        <SiteFooter />
         <Toaster />
       </body>
     </html>

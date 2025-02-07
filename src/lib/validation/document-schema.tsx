@@ -10,6 +10,7 @@ export const ConfigSchema = z.object({
   theme: ThemeSchema,
   fonts: FontsSchema,
   pageNumber: PageNumberSchema,
+  pattern: z.string().optional(),
 });
 
 export const DocumentSchema = z.object({
